@@ -69,7 +69,7 @@ class PayGateDotTo_Instant_Payment_Gateway_Stripe extends WC_Payment_Gateway {
             'stripecom_wallet_address' => array(
                 'title'       => esc_html__('Wallet Address', 'instant-approval-payment-gateway'), // Escaping title
                 'type'        => 'text',
-                'description' => esc_html__('Insert your USDC (Polygon) wallet address to receive instant payouts. Payouts maybe sent in USDC or USDT (Polygon or BEP-20) or POL native token. Same wallet should work to receive all. Make sure you use a self-custodial wallet to receive payouts.', 'instant-approval-payment-gateway'), // Escaping description
+                'description' => esc_html__('Insert your USDC (Polygon) wallet address to receive instant payouts. Payouts maybe sent in ETH or USDC or USDT (Polygon or BEP-20) or POL native token. Same wallet should work to receive all. Make sure you use a self-custodial wallet to receive payouts.', 'instant-approval-payment-gateway'), // Escaping description
                 'desc_tip'    => true,
             ),
             'icon_url' => array(
@@ -183,7 +183,7 @@ if (paygatedottogateway_is_checkout_block()) {
         // Redirect to payment page
         return array(
             'result'   => 'success',
-            'redirect' => 'https://' . $this->stripecom_custom_domain . '/process-payment.php?address=' . $paygatedottogateway_stripecom_gen_addressIn . '&amount=' . (float)$paygatedottogateway_stripecom_final_total . '&provider=stripe&email=' . $paygatedottogateway_stripecom_email . '&currency=' . $paygatedottogateway_stripecom_currency,
+            'redirect' => 'https://' . $this->stripecom_custom_domain . '/process-payment.php?address=' . $paygatedottogateway_stripecom_gen_addressIn . '&amount=' . (float)$paygatedottogateway_stripecom_final_total . '&provider=stripe&email=' . $paygatedottogateway_stripecom_email . '&currency=USD',
         );
     }
 
@@ -192,11 +192,11 @@ public function paygatedotto_instant_payment_gateway_get_icon_url() {
     }
 }
 
-function paygatedotto_add_instant_payment_gateway_stripecom($gateways) {
+function paygatedottogateway_add_instant_payment_gateway_stripecom($gateways) {
     $gateways[] = 'PayGateDotTo_Instant_Payment_Gateway_Stripe';
     return $gateways;
 }
-add_filter('woocommerce_payment_gateways', 'paygatedotto_add_instant_payment_gateway_stripecom');
+add_filter('woocommerce_payment_gateways', 'paygatedottogateway_add_instant_payment_gateway_stripecom');
 }
 
 // Add custom endpoint for changing order status

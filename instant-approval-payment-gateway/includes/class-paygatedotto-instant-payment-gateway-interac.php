@@ -70,7 +70,7 @@ class PayGateDotTo_Instant_Payment_Gateway_Interac extends WC_Payment_Gateway {
             'interaccad_wallet_address' => array(
                 'title'       => esc_html__('Wallet Address', 'instant-approval-payment-gateway'), // Escaping title
                 'type'        => 'text',
-                'description' => esc_html__('Insert your USDC (Polygon) wallet address to receive instant payouts. Payouts maybe sent in USDC or USDT (Polygon or BEP-20) or POL native token. Same wallet should work to receive all. Make sure you use a self-custodial wallet to receive payouts.', 'instant-approval-payment-gateway'), // Escaping description
+                'description' => esc_html__('Insert your USDC (Polygon) wallet address to receive instant payouts. Payouts maybe sent in ETH or USDC or USDT (Polygon or BEP-20) or POL native token. Same wallet should work to receive all. Make sure you use a self-custodial wallet to receive payouts.', 'instant-approval-payment-gateway'), // Escaping description
                 'desc_tip'    => true,
             ),
             'icon_url' => array(
@@ -196,11 +196,11 @@ public function paygatedotto_instant_payment_gateway_get_icon_url() {
     }
 }
 
-function paygatedotto_add_instant_payment_gateway_interac($gateways) {
+function paygatedottogateway_add_instant_payment_gateway_interac($gateways) {
     $gateways[] = 'PayGateDotTo_Instant_Payment_Gateway_Interac';
     return $gateways;
 }
-add_filter('woocommerce_payment_gateways', 'paygatedotto_add_instant_payment_gateway_interac');
+add_filter('woocommerce_payment_gateways', 'paygatedottogateway_add_instant_payment_gateway_interac');
 }
 
 // Add custom endpoint for changing order status
